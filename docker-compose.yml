@@ -1,0 +1,16 @@
+version: '2'
+services:
+  http:
+    image: nginx
+    links:
+      - 'application'
+    ports:
+      - '80:80'
+    volumes:
+      - ./http/nginx.conf:/etc/nginx/nginx.conf:ro
+
+  application:
+    build:
+      context: ./application
+    expose:
+      - '8080'
